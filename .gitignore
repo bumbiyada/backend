@@ -1,3 +1,4 @@
 .idea/
 *.xls
 *.xlsx
+src/db.sqlite3
