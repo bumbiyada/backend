@@ -14,10 +14,10 @@ class Scatters:
         """ This scatter renders bars aff all done and not done tasks grouped by users """
         df_yes = pd.DataFrame(columns=['Stage_user', 'Is_done'])
         df_no = pd.DataFrame(columns=['Stage_user', 'Is_done'])
-        df_2 = data.loc[:, 'Stage_user':'Is_done':2]
-        for i in range(len(df_2)):
-            done_var = df_2['Is_done'].iloc[i]
-            user_var = df_2['Stage_user'].iloc[i]
+        df_cut = data.loc[:, 'Stage_user':'Is_done':2]
+        for i in range(len(df_cut)):
+            done_var = df_cut['Is_done'].iloc[i]
+            user_var = df_cut['Stage_user'].iloc[i]
             if done_var == 0:
                 df_no = df_no.append({'Stage_user': user_var, 'Is_done': done_var}, ignore_index=True)
             elif done_var == 1:
@@ -26,9 +26,9 @@ class Scatters:
         sum_no = df_no['Stage_user'].value_counts()
         sum_counts = data['Stage_user'].value_counts()
 
-        list_my = sum_counts.index.to_list()
-        list_my[0] = 'Исполнитель не указан'
-        sum_counts.index = list_my
+        rename_index_list = sum_counts.index.to_list()
+        rename_index_list[0] = 'Исполнитель не указан'
+        sum_counts.index = rename_index_list
 
         fig = go.Figure()
         fig.add_trace(go.Bar(name='Выполнена', x=sum_yes.index, y=sum_yes))
@@ -47,9 +47,9 @@ class Scatters:
     @staticmethod
     def stage_name_pie(data):
         """ This scatter renders pie diagram of all tasks grouped by stage name """
-        sum_counts_1 = data['Stage_name'].value_counts().sort_index()
+        sum_counts = data['Stage_name'].value_counts().sort_index()
         fig = go.Figure()
-        fig.add_trace(go.Pie(values=sum_counts_1, labels=sum_counts_1.index, textinfo='label+percent'))
+        fig.add_trace(go.Pie(values=sum_counts, labels=sum_counts.index, textinfo='label+percent'))
         fig.update_layout(
             legend_title_text="Этапы документа",
             margin_l=0,
@@ -62,10 +62,10 @@ class Scatters:
     def is_aborted_pie(data):
         """ This scatter renders pie diagram of all tasks grouped by is_aborted(bool) """
         sum_counts = data['Is_aborted'].value_counts().sort_index()
-        list_my = sum_counts.index.to_list()
-        list_my[0] = 'нет'
-        list_my[1] = 'да'
-        sum_counts.index = list_my
+        rename_index_list = sum_counts.index.to_list()
+        rename_index_list[0] = 'нет'
+        rename_index_list[1] = 'да'
+        sum_counts.index = rename_index_list
         fig = go.Figure()
         fig.add_trace(go.Pie(values=sum_counts, labels=sum_counts.index, textinfo='label+percent'))
         fig.update_layout(
@@ -80,10 +80,10 @@ class Scatters:
     def is_done_pie(data):
         """ This scatter renders pie diagram of all tasks grouped by is_done(bool) """
         sum_counts = data['Is_done'].value_counts().sort_index()
-        list_my = sum_counts.index.to_list()
-        list_my[0] = 'нет'
-        list_my[1] = 'да'
-        sum_counts.index = list_my
+        rename_index_list = sum_counts.index.to_list()
+        rename_index_list[0] = 'нет'
+        rename_index_list[1] = 'да'
+        sum_counts.index = rename_index_list
         fig = go.Figure()
         fig.add_trace(go.Pie(values=sum_counts, labels=sum_counts.index, textinfo='label+percent'))
         fig.update_layout(
@@ -98,10 +98,10 @@ class Scatters:
     def marked_on_delete_pie(data):
         """ This scatter renders pie diagram of all tasks grouped by marked_on_delete(bool) """
         sum_counts = data['Marked_on_delete'].value_counts().sort_index()
-        list_my = sum_counts.index.to_list()
-        list_my[0] = 'нет'
-        list_my[1] = 'да'
-        sum_counts.index = list_my
+        rename_index_list = sum_counts.index.to_list()
+        rename_index_list[0] = 'нет'
+        rename_index_list[1] = 'да'
+        sum_counts.index = rename_index_list
         fig = go.Figure()
         fig.add_trace(go.Pie(values=sum_counts, labels=sum_counts.index, textinfo='label+percent'))
         fig.update_layout(
