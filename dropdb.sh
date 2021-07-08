@@ -13,3 +13,7 @@ rm -rf completed.xlsx
 python script.py
 echo
 echo all job is done
+
+echo running server
+
+python src/manage.py runserver

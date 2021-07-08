@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'import_export',
     'debug_toolbar',
     'api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -141,4 +143,8 @@ DATETIME_INPUT_FORMATS = ['%d.%m.%Y %H:%M:%S']
 # important for django-debug-toolbar
 INTERNAL_IPS = [
     '127.0.0.1'
+]
+# headers to connect localhost 8000 and 8050
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8050",
 ]
