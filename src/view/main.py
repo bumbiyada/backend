@@ -2,8 +2,8 @@ import dash
 import dash_auth
 
 from layout_components import navbar_component, alert_is_logged_component, tabs_component
-from layout_components import first_tab_component, second_tab_component, third_tab_component
-
+from layout_components import first_tab_component, second_tab_component, third_tab_component, first_tab_table
+from layout_components import first_tab_button
 import plotly.io as pio
 
 import dash_bootstrap_components as dbc
@@ -14,7 +14,7 @@ from secret import PASSWORDS
 
 pio.renderers.default = 'browser'
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 
 """ LAYOUT """
 
@@ -37,6 +37,15 @@ def switch_tab(at):
     elif at == "tab-3":
         return third_tab_component()
     return html.P("This shouldn't ever be displayed...")
+
+
+@app.callback(
+    Output("table_id", "children"), [Input("loading_table", "n_clicks")]
+)
+def load_output(n_clicks):
+    if n_clicks:
+        return first_tab_table()
+    return first_tab_button()
 
 
 """ AUTHENTIFICATION """

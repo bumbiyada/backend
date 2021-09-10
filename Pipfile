@@ -16,6 +16,9 @@ dash = "*"
 tabulate = "*"
 dash-bootstrap-components = "*"
 dash-auth = "*"
+pylint = "*"
+apscheduler = "*"
+django-apscheduler = "*"
 
 [dev-packages]
 

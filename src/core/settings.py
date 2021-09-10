@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'api',
     'corsheaders',
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,
+        }
     }
 }
 
@@ -148,3 +152,9 @@ INTERNAL_IPS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8050",
 ]
+
+DJANGO_SUPERUSER_PASSWORD = '123'
+
+DJANGO_SUPERUSER_EMAIL = 'bumbiyada@gmail.com'
+
+DJANGO_SUPERUSER_USERNAME = '123'

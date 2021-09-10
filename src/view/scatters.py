@@ -1,6 +1,8 @@
 import pandas as pd
 import plotly.graph_objs as go
 
+""" """
+
 
 """ File contains all scatters """
 
@@ -125,3 +127,37 @@ class Scatters:
             margin_t=20,
             margin_b=0)
         return fig
+
+    @staticmethod
+    def table_data_preprocess(data):
+        """ this is not the scatter actually but it manipulates with data so why not)) """
+        data_new = data.copy()
+
+        def make_compare(value, index):
+            if data_new[value].iloc[index] == 0:
+                data_new[value].iloc[index] = 'Нет'
+            else:
+                data_new[value].iloc[index] = 'Да'
+
+        def bool_to_str(index):
+            make_compare('Is_aborted', index)
+            make_compare('Is_done', index)
+            make_compare('Marked_on_delete', index)
+
+        for i in range(len(data_new)):
+            bool_to_str(i)
+
+        data_new.columns = [
+            'id',
+            'фоив',
+            'документ тип',
+            'документ дата',
+            'документ номер',
+            'этап дата',
+            'этап имя',
+            'этап юзер',
+            'отменена',
+            'выполнена',
+            'отметка'
+        ]
+        return data_new

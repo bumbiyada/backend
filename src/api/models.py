@@ -53,9 +53,9 @@ class ListAll(models.Model):
         verbose_name='Прервана',
         default=False
     )
-    Is_done = models.BooleanField(
-        verbose_name='Выполнена',
-        default=True
+    State = models.IntegerField(
+        verbose_name='Статус',
+        default=102
     )
     Marked_on_delete = models.BooleanField(
         verbose_name='Пометка на удаление',
@@ -65,6 +65,7 @@ class ListAll(models.Model):
     class Meta:
         db_table = 'documents'
 
-    # def __str__(self):
-    #     name = str(self.Document_number) + ' ' + str(self.Stage_name) + ' ' + str(self.Stage_data)
-    #     return name
+    def __str__(self):
+         #name = str(self.Document_number) + ' ' + str(self.Stage_name) + ' ' + str(self.Stage_data)
+         name = 'aboba' + str(self.id)
+         return name
